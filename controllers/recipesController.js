@@ -38,8 +38,13 @@ recipes.delete('/:id', async (req, res) => {
 });
 
 // edit
-// recipes.put('/:id', async (req, res) => {
-//
-// });
+recipes.put('/:id', async (req, res) => {
+  try {
+    const updateRecipe = await Recipe.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).json(updateRecipe);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
 
 module.exports = recipes;
