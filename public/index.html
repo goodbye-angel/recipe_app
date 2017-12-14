@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app="worldbank">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
+    <script src="/js/app.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Document</title>
+</head>
+<body ng-controller="mainController as ctrl">
+    <nav>
+         <div class="logo">Recipes</div>
+         <!-- <div class="menu"> Menu </div> -->
+    </nav>
+    <div class="centerTop">
+    
+        
+        <form class="NewDataForm" name="newRecordForm" ng-submit="ctrl.createData()">
+            <h6>Add New Recipe</h6>
+            <input type="text" ng-model="ctrl.createDataZ.name" placeholder="Recipe Name" required/>
+            <input type="text" ng-model="ctrl.createDataZ.ingredients" placeholder="ingredients" required/>
+            <input type="text" ng-model="ctrl.createDataZ.cookingTime" placeholder="Cooking Time" required/>
+            <input type="text" ng-model="ctrl.createDataZ.servingSize" placeholder="Serving Size" required/>
+            <input class="AbstractWidth" type="url" ng-model="ctrl.createDataZ.img" placeholder="Directions" required/>
+            <button type="submit">SUBMIT</button>
+        </form>
+    </div>
+   
+
+<div class="flex">
+    <div class="chooseCountry">
+
+   
+        <h6> <em>Click a Recipe to find out more</em> </h6>
+            <input type="text" placeholder="Search for Recipe" ng-model="searchBox" />
+        <div ng-repeat='region in ctrl.regions | orderBy:region | filter:searchBox ' ng-click='ctrl.clickRegion(region)'>
+        <ul>
+            <li ng-click="ctrl.clickForInfos( region )"> {{region}}</li>
+        </ul>
+        </div>
+    </div>
+    <div class="details">
+        <div class="detailsTop">
+        <h3>Recipe info:</h3>
+        <hr>
+        <div class="detailsInfo">
+        <div class="right">
+            <h5>Recipe Name:</h5>
+            <h5> Ingredients: </h5>
+            <h5>Cooking Time:</h5>
+            <h5> Serving Size: </h5>
+            <img> image </img>
+            
+        </div>
+        <div class="left">
+            <h5>{{ctrl.info.name}}</h5>
+            <h5>{{ ctrl.info.ingredients }} </h5>
+            <h5>{{ ctrl.info.cookingTime }}</h5>
+            <h5>{{ ctrl.info.servingSize }}</h5>
+            <h5>{{ ctrl.info.img }}</h5>
+            
+        </div>
+        </div>
+        </div>
+   
+        <div class="detailsAbstract">
+            <h5> Directions: </h5> 
+            <div >{{ ctrl.info.instructions }}</div>
+        </div>
+
+    </div>
+</div> 
+
+</body>
+</html>
