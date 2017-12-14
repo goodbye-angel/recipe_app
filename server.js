@@ -24,9 +24,12 @@ db.on('open', () => {
 app.use(express.urlencoded({ extended: false }));// extended: false - does not allow nested objects in query strings
 app.use(express.json());// returns middleware that only parses JSON
 
+// controllers
+const recipesController = require('./controllers/recipesController.js');
+app.use('/recipes', recipesController);
 
 app.get('/', function (req, res) {
-    res.send('Hello world! Here is our recipe app!')
+    res.redirect('/recipes');
 });
 
 app.use(express.static('public'));
@@ -36,5 +39,3 @@ app.listen(port, () => {
     console.log('Running on port ' + port);
     console.log('=======================');
 });
-
-
