@@ -18,14 +18,24 @@ recipes.get('/', async (req, res) => {
 });
 
 // create
-// recipes.post('/', async (req, res) => {
-//
-// });
+recipes.post('/', async (req, res) => {
+  try {
+    const newRecipe = await Recipe.create(req.body);
+    res.status(200).json(newRecipe);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
 
 // delete
-// recipes.delete('/:id', async (req, res) => {
-//
-// });
+recipes.delete('/:id', async (req, res) => {
+  try {
+    const deleteRecipe = await Recipe.findByIdAndRemove(req.params.id);
+    res.status(200).json(deleteRecipe);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
 
 // edit
 // recipes.put('/:id', async (req, res) => {

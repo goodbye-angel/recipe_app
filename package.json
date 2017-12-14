@@ -19,6 +19,7 @@
   "homepage": "https://github.com/goodbye-angel/recipe_app#readme",
   "dependencies": {
     "express": "^4.16.2",
-    "mongoose": "^4.13.7"
+    "mongoose": "^4.13.7",
+    "nodemon": "^1.12.7"
   }
 }
