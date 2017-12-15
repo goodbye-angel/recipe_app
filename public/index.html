@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="RecipesApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>Recipes</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
+    <script src="/js/app.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+<nav>
+    <div class="logo">Recipes</div>
+
+</nav>
+
+<body ng-controller="MainController as ctrl">
+    <div class="container">
+
+        <form ng-submit="ctrl.createRecipe()">
+            <input type="text" ng-model="ctrl.createForm.name" placeholder="Recipe name" />
+            <input type="text" ng-model="ctrl.createForm.ingredients" placeholder="Recipe ingredients" />
+            <input type="text" ng-model="ctrl.createForm.instructions" placeholder="Recipe Instructions" />
+            <input type="text" ng-model="ctrl.createForm.cookingTime" placeholder="Recipe Cooking Time" />
+            <input type="text" ng-model="ctrl.createForm.servingSize" placeholder="Recipe Serving Size" />
+            <input type="text" ng-model="ctrl.createForm.img" placeholder="Image address" />
+            <input type="submit" value="Create New Recipe" />
+        </form>
+
+        <table>
+            <tr ng-repeat="recipe in ctrl.recipes" ng-class="(recipe.ingredients ? 'ingredients' : '' )">
+                <td ng-dblclick="ctrl.updateIngredients( recipe )" ng-click="ctrl.chooseOneRecipe( recipe )"> {{ recipe.name }} </td>
+                <!-- <td>{{recipe.cookingTime}} minutes </td> -->
+
+                <td ng-click="ctrl.deleteRecipe( recipe._id )">x</td>
+            </tr>
+            <table>
+                <div class="details">
+                    <h3>Recipe Info:</h3>
+                    <hr>
+                    <h4>
+                        <span> Name: </span>{{ ctrl.recipe.name }}</h4>
+                    <h6>
+                        <span> Ingredients: </span> {{ ctrl.recipe.ingredients }} </h6>
+                    <h6>
+                        <span> Cooking Time:</span> {{ ctrl.recipe.cookingTime }}</h6>
+                    <p>
+                        <span> Instructions: </span> {{ ctrl.recipe.instructions }}
+                    </p>
+                </div>
+
+    </div>
+
+</body>
+
+</html>
