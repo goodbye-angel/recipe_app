@@ -6,6 +6,8 @@ app.controller('MainController', ['$http', function ($http) {
 
     this.recipe = '';
 
+    this.recipes = [];
+
 
     this.createRecipe = () => {
         $http({

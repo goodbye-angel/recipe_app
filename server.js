@@ -28,13 +28,11 @@ app.use(express.json());// returns middleware that only parses JSON
 app.use(express.static('public'));
 
 //Routes
-const recipeController = require('./controllers/recipeController.js');
-app.use('/recipes', recipeController);
+const recipesController = require('./controllers/recipesController.js');
+app.use('/recipes', recipesController);
 
 app.listen(port, () => {
     console.log('=======================');
     console.log('Running on port ' + port);
     console.log('=======================');
 });
-
-
