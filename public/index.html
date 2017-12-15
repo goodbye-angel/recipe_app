@@ -10,32 +10,49 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 </head>
-<nav>
+<div class="nav">
     <div class="logo">Recipes</div>
-    <!-- <div class="menu"> Menu </div> -->
-</nav>
-
+    <div class="menu"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Ei-navicon.svg/2000px-Ei-navicon.svg.png" height="49" width="49"> </div>
+</div>
+<div class="head">
+ <div class="logo2">Recipes</div>
+</div>
 <body ng-controller="MainController as ctrl">
     <div class="container">
-
+<div class="center">
+    <h6 class="h6Forms">Add a Recipe </h6>
         <form ng-submit="ctrl.createRecipe()">
-            <input type="text" ng-model="ctrl.createForm.name" placeholder="Recipe name" />
-            <input type="text" ng-model="ctrl.createForm.ingredients" placeholder="Recipe ingredients" />
-            <input type="text" ng-model="ctrl.createForm.instructions" placeholder="Recipe Instructions" />
-            <input type="text" ng-model="ctrl.createForm.cookingTime" placeholder="Recipe Cooking Time" />
-            <input type="text" ng-model="ctrl.createForm.servingSize" placeholder="Recipe Serving Size" />
+            <div><input type="text" ng-model="ctrl.createForm.name" placeholder="Recipe name" /></div>
+            <div><input type="text" ng-model="ctrl.createForm.ingredients" placeholder="Recipe ingredients" /></div>
+           <div> <input type="text" ng-model="ctrl.createForm.instructions" placeholder="Recipe Instructions" /></div>
+            <div><input type="text" ng-model="ctrl.createForm.cookingTime" placeholder="Recipe Cooking Time" /></div>
+            <div><input type="text" ng-model="ctrl.createForm.servingSize" placeholder="Recipe Serving Size" /></div>
             <!-- <input type="text" ng-model="ctrl.createForm.img" placeholder="img URL" /> -->
             <input type="submit" value="Create New Recipe" />
         </form>
+        
+        </div>
         <!-- closes our create form -->
-        <table>
-            <tr ng-repeat="recipe in ctrl.recipes" ng-class="(recipe.ingredients ? 'ingredients' : '' )">
-                <td ng-dblclick="ctrl.updateIngredients( recipe )" ng-click="ctrl.chooseOneRecipe( recipe )"> {{ recipe.name }} </td>
+
+        <div class="directions">
+            <h6>
+                <em>-- click recipe to view details --</em>
+            </h6>
+        </div>
+        <div class="backgroundMiddle">
+        <div class="tableDiv">
+        
+            <div class="flexList" ng-repeat="recipe in ctrl.recipes" ng-class="(recipe.ingredients ? 'ingredients' : '' )">
+                <div class="recipeList" ng-click="ctrl.chooseOneRecipe( recipe )"> {{ recipe.name }} </div>
                 <!-- <td>{{recipe.cookingTime}} minutes </td> -->
 
-                <td ng-click="ctrl.deleteRecipe( recipe._id )">x</td>
-            </tr>
-            <table>
+                <button ng-click="ctrl.deleteRecipe( recipe._id )">x</button>
+                <!-- <button ng-click="ctrl.chooseOneRecipe( recipe )">Edit</button> -->
+      
+        </div>
+        </div>
+        
+        
                 <div class="details">
                     <h3>Recipe Info:</h3>
                     <hr>
@@ -50,9 +67,36 @@
                     </p>
                 </div>
 
-    </div>
-    <!-- closes div with class container -->
+</div>
 
+<!--  update/edit form doesnt work  -->
+<div class="center">
+    <h6 class="h6Forms">Edit Form (doesnt work currently)</h6>
+<form ng-submit="ctrl.updateModal(ctrl.oneDish.id)">
+    <div><input class="new-record-input" type="text" ng-model="ctrl.editDishForm.name" 
+    value="{{ ctrl.recipe.name }}"></div>
+    
+    <div><input class="new-record-input" type="text" ng-model="ctrl.editDishForm.instructions" 
+    value="{{ ctrl.recipe.ingredients }}"></div>
+    
+    <div><input class="new-record-input" type="text" ng-model="ctrl.editDishForm.instructions" 
+    value="{{ctrl.oneDish.instructions}}"></div>
+    
+    <div><input class="new-record-input" type="text" ng-model="ctrl.editDishForm.cookingTime" 
+    value="{{ ctrl.recipe.cookingTime }}"></div>
+    
+    <div><input class="new-record-input" type="text" ng-model="ctrl.editDishForm.servingSize" 
+    value="{{ ctrl.recipe.servingSize }}"></div>
+    
+    <button id="new-record-submit" type="submit" >EDIT</button>
+</form>
+</div>
+
+    </div>
+
+    <footer>
+         Recipes Inc
+    </footer>
 </body>
 
 </html>

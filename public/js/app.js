@@ -54,20 +54,22 @@ app.controller('MainController', ['$http', function ($http) {
             }).catch(err => console.error('Catch: ', err));
     }
 
-    this.updateCelebrated = (recipe) => {
+/////----------edit doesnt work------------------------------------
 
-        recipe.celebrated = !recipe.celebrated;
+    this.editRecipe = (recipe) => {
 
         $http({
             method: 'PUT',
             url: '/recipes/' + recipe._id,
-            data: { celebrated: recipe.celebrated }
+            data: { recipe: recipe }
         }).then(response => {
-            console.log(response.data.celebrated);
+            console.log(response.data);
         }, error => {
             console.error(error.message);
         }).catch(err => console.error('Catch: ', err));
     }
+/////-------------------------------------------------------------
+
 
 
     this.chooseOneRecipe = (recipe) => {
@@ -76,7 +78,6 @@ app.controller('MainController', ['$http', function ($http) {
     }
 
 
-    // add increment likes
     this.addRecipe = (recipe) => {
 
         $http({
@@ -91,5 +92,8 @@ app.controller('MainController', ['$http', function ($http) {
     }
 
 
+ 
 
-}]); //this closes app.controller
+
+
+}]);
