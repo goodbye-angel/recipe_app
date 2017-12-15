@@ -12,7 +12,7 @@
 </head>
 <nav>
     <div class="logo">Recipes</div>
-    <!-- <div class="menu"> Menu </div> -->
+
 </nav>
 
 <body ng-controller="MainController as ctrl">
@@ -24,10 +24,10 @@
             <input type="text" ng-model="ctrl.createForm.instructions" placeholder="Recipe Instructions" />
             <input type="text" ng-model="ctrl.createForm.cookingTime" placeholder="Recipe Cooking Time" />
             <input type="text" ng-model="ctrl.createForm.servingSize" placeholder="Recipe Serving Size" />
-            <!-- <input type="text" ng-model="ctrl.createForm.img" placeholder="img URL" /> -->
+            <input type="text" ng-model="ctrl.createForm.img" placeholder="Image address" />
             <input type="submit" value="Create New Recipe" />
         </form>
-        <!-- closes our create form -->
+
         <table>
             <tr ng-repeat="recipe in ctrl.recipes" ng-class="(recipe.ingredients ? 'ingredients' : '' )">
                 <td ng-dblclick="ctrl.updateIngredients( recipe )" ng-click="ctrl.chooseOneRecipe( recipe )"> {{ recipe.name }} </td>
@@ -51,7 +51,6 @@
                 </div>
 
     </div>
-    <!-- closes div with class container -->
 
 </body>
 

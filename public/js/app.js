@@ -8,7 +8,7 @@ app.controller('MainController', ['$http', function ($http) {
 
     this.recipes = [];
 
-
+    // create
     this.createRecipe = () => {
         $http({
             method: 'POST',
@@ -22,6 +22,7 @@ app.controller('MainController', ['$http', function ($http) {
         }).catch(err => console.error('Catch: ', err));
     }
 
+    // index
     this.getRecipes = () => {
         $http({
             method: 'GET',
@@ -37,10 +38,7 @@ app.controller('MainController', ['$http', function ($http) {
     //load immediately on page load
     this.getRecipes();
 
-    this.deleteRecipe = (id) => {
-        console.log("I'm going to delete you", id);
-    }
-
+    // delete
     this.deleteRecipe = (id) => {
         $http({
             method: 'DELETE',
@@ -54,40 +52,10 @@ app.controller('MainController', ['$http', function ($http) {
             }).catch(err => console.error('Catch: ', err));
     }
 
-    this.updateCelebrated = (recipe) => {
-
-        recipe.celebrated = !recipe.celebrated;
-
-        $http({
-            method: 'PUT',
-            url: '/recipes/' + recipe._id,
-            data: { celebrated: recipe.celebrated }
-        }).then(response => {
-            console.log(response.data.celebrated);
-        }, error => {
-            console.error(error.message);
-        }).catch(err => console.error('Catch: ', err));
-    }
-
-
+    // show
     this.chooseOneRecipe = (recipe) => {
         this.recipe = recipe;
         console.log(this.recipe.name);
-    }
-
-
-    // add increment likes
-    this.addRecipe = (recipe) => {
-
-        $http({
-            method: 'PUT',
-            url: '/recipes/' + recipe._id,
-            data: { likes: recipe.likes }
-        }).then(response => {
-            console.log(response.data.likes);
-        }, error => {
-            console.error(error.message);
-        }).catch(err => console.error('Catch: ', err));
     }
 
 
