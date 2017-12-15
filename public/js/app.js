@@ -1,50 +1,35 @@
 const app = angular.module('worldbank', []);
 
-this.info = ''
 
 app.controller('mainController', ['$http', function ($http) {
     //stuff
 
+    this.recipes = [];
+    this.newRecipe = {};
 
-    this.counting = () => {
-        $http({
-            method: 'GET',
-            url: '/wbinfo/count'
-        }).then(response => {
-            this.counting = response.data;
-            
-        }, error => {
-            console.error(error.message);
-        }).catch(err => console.error('Catch: ', err));
-    }
-
-    //load immediately on page load
-    this.counting();
-
-    //click on region name and info store in global variable
-    this.clickForInfos = (regionName) => {
+    //click on region name and newRecipe store in global variable
+    this.clickFornewRecipes = (id) => {
         console.log()
         $http({
             method: 'GET',
-            url: '/wbinfo/byName/' + regionName
+            url: '/recipes/' + id
         }).then(response => {
-            this.infos = response.data;
-            this.info = this.infos[0];
-            console.log(this.info);
+            this.newRecipe = response.data;
+            console.log(this.newRecipe);
         }, error => {
             console.error(error.message);
         }).catch(err => console.error('Catch: ', err));
     }
 
     //load immediately on page load 
-    this.clickForInfos();
+    this.clickFornewRecipes();
 
 
 
     this.uniqueRegions = () => {
         $http({
             method: 'GET',
-            url: '/wbinfo/uniqueRegions'
+            url: '/recipes/uniqueRegions'
         }).then(response => {
             this.regions = response.data;
             
@@ -56,27 +41,21 @@ app.controller('mainController', ['$http', function ($http) {
     this.uniqueRegions();
 
 
-  
-
-
 
     
-    this.createDataZ = {};
-
-    this.createData = () => {
+    this.createRecipe = () => {
         $http({
             method: 'POST',
-            url: '/wbinfo',
-            data: this.createDataZ
+            url: '/recipes',
+            data: this.newRecipe
         }).then(response => {
-            this.regions.push(response.data.region);
-            this.createDataZ = {};
+            this.recipes.push(response.data);
+            console.log(response.data);
+            // this.newRecipe = {};
         }, error => {
             console.error(error.message);
         }).catch(err => console.error('Catch: ', err));
     }
-
-
 
 
 

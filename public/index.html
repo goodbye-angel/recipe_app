@@ -21,11 +21,12 @@
         
         <form class="NewDataForm" name="newRecordForm" ng-submit="ctrl.createData()">
             <h6>Add New Recipe</h6>
-            <input type="text" ng-model="ctrl.createDataZ.name" placeholder="Recipe Name" required/>
-            <input type="text" ng-model="ctrl.createDataZ.ingredients" placeholder="ingredients" required/>
-            <input type="text" ng-model="ctrl.createDataZ.cookingTime" placeholder="Cooking Time" required/>
-            <input type="text" ng-model="ctrl.createDataZ.servingSize" placeholder="Serving Size" required/>
-            <input class="AbstractWidth" type="url" ng-model="ctrl.createDataZ.img" placeholder="Directions" required/>
+            <input type="text" ng-model="ctrl.newRecipe.name" placeholder="Recipe Name" required/>
+            <input type="text" ng-model="ctrl.newRecipe.ingredients" placeholder="ingredients" required/>
+            <input type="text" ng-model="ctrl.newRecipe.cookingTime" placeholder="Cooking Time" />
+            <input type="text" ng-model="ctrl.newRecipe.servingSize" placeholder="Serving Size" />
+            <input type="text" ng-model="ctrl.newRecipe.instructions" placeholder="Instructions" required>
+            <input class="AbstractWidth" type="url" ng-model="ctrl.newRecipe.img" placeholder="Image" />
             <button type="submit">SUBMIT</button>
         </form>
     </div>
@@ -37,9 +38,10 @@
    
         <h6> <em>Click a Recipe to find out more</em> </h6>
             <input type="text" placeholder="Search for Recipe" ng-model="searchBox" />
-        <div ng-repeat='region in ctrl.regions | orderBy:region | filter:searchBox ' ng-click='ctrl.clickRegion(region)'>
+        <div ng-repeat='recipe in ctrl.recipes | orderBy:recipe | filter:searchBox ' ng-click='ctrl.clickrecipe(recipe)'>
         <ul>
-            <li ng-click="ctrl.clickForInfos( region )"> {{region}}</li>
+            <li ng-click="ctrl.clickForRecipe( recipe )"> 
+                {{recipe.name}}</li>
         </ul>
         </div>
     </div>
@@ -49,7 +51,7 @@
         <hr>
         <div class="detailsInfo">
         <div class="right">
-            <h5>Recipe Name:</h5>
+            <h5>RecipeName:</h5>
             <h5> Ingredients: </h5>
             <h5>Cooking Time:</h5>
             <h5> Serving Size: </h5>
@@ -57,11 +59,11 @@
             
         </div>
         <div class="left">
-            <h5>{{ctrl.info.name}}</h5>
-            <h5>{{ ctrl.info.ingredients }} </h5>
-            <h5>{{ ctrl.info.cookingTime }}</h5>
-            <h5>{{ ctrl.info.servingSize }}</h5>
-            <h5>{{ ctrl.info.img }}</h5>
+            <h5>{{ctrl.newRecipe.name}}</h5>
+            <h5>{{ ctrl.newRecipe.ingredients }} </h5>
+            <h5>{{ ctrl.newRecipe.cookingTime }}</h5>
+            <h5>{{ ctrl.newRecipe.servingSize }}</h5>
+            <h5>{{ ctrl.newRecipe.img }}</h5>
             
         </div>
         </div>
@@ -69,7 +71,7 @@
    
         <div class="detailsAbstract">
             <h5> Directions: </h5> 
-            <div >{{ ctrl.info.instructions }}</div>
+            <div >{{ ctrl.newRecipe.instructions }}</div>
         </div>
 
     </div>
